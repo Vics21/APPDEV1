@@ -1,0 +1,51 @@
+<div class="profile container">
+    <section class="profile header">
+        <div class= "name-container">
+            <h1 [style.color] = "currentColor">{{profile.name}}</h1>
+            <button (click) = changeNameColor() class="color-change-btn">
+                <i class="fas fa-palette">Change Color</i></button>
+        </div>
+        <h2>{{profile.title}}</h2>
+        <p class="about">{{profile.about}}</p>
+    </section>
+
+<section class="profile-section">
+    <h3>Skills: </h3>
+    <div class="skills">
+        @for (skills of profile.skills; track skills){
+            <span class="skill-tag">
+                {{skills}}
+            </span>    
+        }
+    </div>
+</section>
+
+<section class="profile-section">
+    <h3>Experience</h3>
+    @for (job of profile.experience; track job.role){
+        <div class="experience-item">
+            <h4>{{job.role}} at {{job.company}}
+            </h4>
+            <p class="class"> {{job.period}}</p>
+            <p>{{job.description}}</p>
+            <h4></h4>
+        </div>
+    }
+</section>
+
+<section class="profile-section">
+    <h3>Education</h3>
+    <div class="education">
+        <h4>{{profile.education.degree}}</h4>
+        <p>{{profile.education.school}}</p>
+        <p class="class-period">{{profile.education.year}}</p>
+    </div>
+</section>
+
+<section class="profile-section contact info">
+    <h3>Contact</h3>
+    <p><i class="fas fa-envelope">{{profile.contact.email}}</i></p>
+    <p><i class="fas fa-phone">{{profile.contact.phone}}</i></p>
+    <p><i class="fas fa-map-marker-alt">{{profile.contact.location}}</i></p>
+</section>
+</div>
