@@ -1,5 +1,8 @@
-
-<app-header></app-header>
-<app-body></app-body>
-<app-footer></app-footer>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <h1>Color Picker</h1>
+  <div class="color-display" [style.background-color] = "currentColor()"></div>
+  <button (click) = "changeColor()" class = "change-color-btn">
+    Color Change
+  </button>
+  <p>Current Color: {{currentColor()}}</p>
+</div>
