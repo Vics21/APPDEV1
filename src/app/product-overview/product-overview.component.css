@@ -1,0 +1,16 @@
+
+:host {
+    display: block;
+    box-sizing: border-box;
+    margin-right: var(--sidebar-width);
+    padding: 16px;
+  }
+  
+  :host {
+    font-weight: 400; /* lighter body for this page */
+  }
+  
+  h2 {
+    font-weight: 600;
+  }
+  

@@ -1,0 +1,18 @@
+<h3>Specifications</h3>
+<ul>
+    <li>Switch Type: {{ switchType }}</li>
+    <li>Key Layout Type: {{ keyLayout }}</li>
+    <li>Backlighting: {{ backlighting }}</li>
+    <li>Connectivity: {{ connectivity }}</li>
+    <li>Dimensions: {{ dimensions }}</li>
+    <li>Weight: {{ weight }}</li>
+    <li>Cable Length: {{ cablelength }}</li>
+    <li>Additional Features: {{ additionalFeatures.join(', ') }}</li>
+</ul>
+
+<h3>What's in the Box</h3>
+<ul>
+    @for (feature of inTheBox; track feature){
+        <li>{{ feature }}</li>
+    }
+</ul>

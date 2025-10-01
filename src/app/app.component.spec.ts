@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'Manual-Keyboard'`, () => {
+  it(`should have as title 'Activity_7'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Manual-Keyboard');
+    expect(app.title).toEqual('Activity_7');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Manual-Keyboard');
+    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, Activity_7');
   });
 });
