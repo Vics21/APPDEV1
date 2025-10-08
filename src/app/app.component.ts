@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from 'express';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,5 +7,5 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  title = 'Activity_7';
+  title = 'Pokedex';
 }

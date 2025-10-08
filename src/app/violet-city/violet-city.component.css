@@ -1,0 +1,6 @@
+:host {
+    display: block;
+    box-sizing: border-box;
+    margin-right: var(--sidebar-width);
+    padding: 16px;
+  }

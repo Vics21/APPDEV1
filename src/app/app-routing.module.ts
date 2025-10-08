@@ -1,22 +1,42 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProductOverviewComponent } from './product-overview/product-overview.component';
-import { ProductSpecificationsComponent } from './product-specifications/product-specifications.component';
-import { KeyFeaturesComponent } from './key-features/key-features.component';
-import { InstructionsComponent } from './instructions/instructions.component';
+import { VioletCityComponent } from './violet-city/violet-city.component';
+import { AzaleaTownComponent } from './azalea-town/azalea-town.component';
+import { BlackthornCityComponent } from './blackthorn-city/blackthorn-city.component';
+import { CianwoodCityComponent } from './cianwood-city/cianwood-city.component';
+import { EcruTeakCityComponent } from './ecru-teak-city/ecru-teak-city.component';
+import { GoldenRodCityComponent } from './golden-rod-city/golden-rod-city.component';
+import { MahoganyTownComponent } from './mahogany-town/mahogany-town.component';
+import { OlivineCityComponent } from './olivine-city/olivine-city.component';
+import { LandingPageComponent } from './landing-page/landing-page.component';
 
-export const routes: Routes = [
+const routes: Routes = [
   {
-    path:'overview', component: ProductOverviewComponent,
+    path:'violet', component: VioletCityComponent,
   },
   {
-    path:'specifications', component: ProductSpecificationsComponent,
+    path:'azalea', component: AzaleaTownComponent,
   },
   {
-    path:'key-features', component: KeyFeaturesComponent,
+    path:'blackthorn', component: BlackthornCityComponent,
   },
   {
-    path:'instructions', component: InstructionsComponent,
+    path:'cianwood', component: CianwoodCityComponent,
+  },
+  {
+    path:'ecruteak', component: EcruTeakCityComponent,
+  },
+  {
+    path:'goldenrod', component: GoldenRodCityComponent,
+  },
+  {
+    path:'mahogany', component: MahoganyTownComponent,
+  },
+  {
+    path:'olivine', component: OlivineCityComponent,
+  },
+  {
+    path:'landingpage', component: LandingPageComponent,
   }
 ];
 
