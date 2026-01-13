@@ -1,0 +1,176 @@
+<div class="comparison-container">
+  <div class="cars-header">
+    <div class="car-column">
+      <div class="car-image-box">
+        <img [src]="car1.imageUrl" [alt]="car1.model" class="car-image">
+      </div>
+      <h2 class="car-name">{{ car1.brand }} {{ car1.model }}</h2>
+      <p class="car-price"> {{ car1.price }}</p>
+      <button class="change-btn" (click)="openSelector(1)">Select Car</button>
+
+      <div class="selector-modal" *ngIf="showSelector1">
+        <div class="selector-content">
+          <h3>Select Car 1</h3>
+          
+          <div class="selector-group">
+            <label>Brand:</label>
+            <select [(ngModel)]="selectedBrand1" class="selector-dropdown">
+              <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+            </select>
+          </div>
+
+          <div class="selector-group">
+            <label>Model:</label>
+            <select [(ngModel)]="selectedModel1" class="selector-dropdown">
+              <option *ngFor="let car of getModelsForBrand(selectedBrand1)" [value]="car.Model_Name">
+                {{ car.Model_Name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="selector-buttons">
+            <button class="confirm-btn" (click)="selectCar(1)">Confirm</button>
+            <button class="cancel-btn" (click)="cancelSelection(1)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="car-column">
+      <div class="car-image-box">
+        <img [src]="car2.imageUrl" [alt]="car2.model" class="car-image">
+      </div>
+      <h2 class="car-name">{{ car2.brand }} {{ car2.model }}</h2>
+      <p class="car-price"> {{ car2.price }}</p>
+      <button class="change-btn" (click)="openSelector(2)">Select Car</button>
+
+      <div class="selector-modal" *ngIf="showSelector2">
+        <div class="selector-content">
+          <h3>Select Car 2</h3>
+          
+          <div class="selector-group">
+            <label>Brand:</label>
+            <select [(ngModel)]="selectedBrand2" class="selector-dropdown">
+              <option *ngFor="let brand of brands" [value]="brand">{{ brand }}</option>
+            </select>
+          </div>
+
+          <div class="selector-group">
+            <label>Model:</label>
+            <select [(ngModel)]="selectedModel2" class="selector-dropdown">
+              <option *ngFor="let car of getModelsForBrand(selectedBrand2)" [value]="car.Model_Name">
+                {{ car.Model_Name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="selector-buttons">
+            <button class="confirm-btn" (click)="selectCar(2)">Confirm</button>
+            <button class="cancel-btn" (click)="cancelSelection(2)">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comparison-section">
+    <div class="section-header" (click)="toggleSection('engine')">
+      <h3>ENGINE</h3>
+      <span class="toggle-icon">{{ expandedSections['engine'] ? '−' : '+' }}</span>
+    </div>
+    <div class="section-content" *ngIf="expandedSections['engine']">
+      
+      <div class="spec-row header-row">
+        <div class="spec-label">ENGINE TYPE</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.engineType }}</div>
+        <div class="spec-value">{{ car2.specs.engineType }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">MAXIMUM TORQUE</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.maxTorque }}</div>
+        <div class="spec-value">{{ car2.specs.maxTorque }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">TRANSMISSION</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.transmission }}</div>
+        <div class="spec-value">{{ car2.specs.transmission }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">FUEL TYPE</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.fuelType }}</div>
+        <div class="spec-value">{{ car2.specs.fuelType }}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="comparison-section">
+    <div class="section-header" (click)="toggleSection('performance')">
+      <h3>PERFORMANCE</h3>
+      <span class="toggle-icon">{{ expandedSections['performance'] ? '−' : '+' }}</span>
+    </div>
+    <div class="section-content" *ngIf="expandedSections['performance']">
+      
+      <div class="spec-row header-row">
+        <div class="spec-label">TOP SPEED</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.topSpeed }}</div>
+        <div class="spec-value">{{ car2.specs.topSpeed }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">ACCELERATION 0-60 MPH</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.acceleration }}</div>
+        <div class="spec-value">{{ car2.specs.acceleration }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">HORSEPOWER</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.horsepower }}</div>
+        <div class="spec-value">{{ car2.specs.horsepower }}</div>
+      </div>
+
+      <div class="spec-row header-row">
+        <div class="spec-label">DRIVETRAIN</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.drivetrain }}</div>
+        <div class="spec-value">{{ car2.specs.drivetrain }}</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="comparison-section">
+    <div class="section-header" (click)="toggleSection('features')">
+      <h3>FEATURES</h3>
+      <span class="toggle-icon">{{ expandedSections['features'] ? '−' : '+' }}</span>
+    </div>
+    <div class="section-content" *ngIf="expandedSections['features']">
+      
+      <div class="spec-row header-row">
+        <div class="spec-label">SEATING CAPACITY</div>
+      </div>
+      <div class="spec-row">
+        <div class="spec-value">{{ car1.specs.seating }} Passengers</div>
+        <div class="spec-value">{{ car2.specs.seating }} Passengers</div>
+      </div>
+
+    </div>
+  </div>

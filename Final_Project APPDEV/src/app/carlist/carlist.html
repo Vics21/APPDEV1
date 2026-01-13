@@ -1,0 +1,85 @@
+<div class="car-list-container">
+  <div class="maker-selection">
+    <label for="maker-select">Select Car Maker:</label>
+    <select 
+      id="maker-select"
+      [(ngModel)]="selectedMaker" 
+      (change)="onMakerChange()"
+      class="maker-dropdown">
+      <option value="">-- Choose a Brand --</option>
+      <option *ngFor="let maker of carMakers" [value]="maker.id">
+        {{ maker.name }}
+      </option>
+    </select>
+  </div>
+
+  <div class="models-grid" *ngIf="carModels.length > 0">
+    <div 
+      *ngFor="let car of carModels" 
+      class="car-card"
+      (click)="onCarClick(car)">
+      <img [src]="car.imageUrl" [alt]="car.Model_Name">
+      <h3>{{ car.Model_Name }}</h3>
+      <p class="view-specs" *ngIf="car.specs">View Specifications →</p>
+      <p class="no-specs" *ngIf="!car.specs">Specs coming soon</p>
+    </div>
+  </div>
+
+  <div class="specs-modal-overlay" *ngIf="showSpecs" (click)="closeSpecs()">
+    <div class="specs-modal" (click)="$event.stopPropagation()" *ngIf="selectedCar">
+      <button class="close-btn" (click)="closeSpecs()">×</button>
+      
+      <div class="specs-header">
+        <img [src]="selectedCar.imageUrl" [alt]="selectedCar.Model_Name">
+        <h2>{{ selectedMaker }} {{ selectedCar.Model_Name }}</h2>
+      </div>
+
+      <div class="specs-content" *ngIf="selectedCar.specs">
+        <div class="spec-row">
+          <span class="spec-label">Engine:</span>
+          <span class="spec-value">{{ selectedCar.specs.engine }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Horsepower:</span>
+          <span class="spec-value">{{ selectedCar.specs.horsepower }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Torque:</span>
+          <span class="spec-value">{{ selectedCar.specs.torque }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Transmission:</span>
+          <span class="spec-value">{{ selectedCar.specs.transmission }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Drivetrain:</span>
+          <span class="spec-value">{{ selectedCar.specs.drivetrain }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">0-60 mph:</span>
+          <span class="spec-value">{{ selectedCar.specs.acceleration }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Top Speed:</span>
+          <span class="spec-value">{{ selectedCar.specs.topSpeed }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Fuel Type:</span>
+          <span class="spec-value">{{ selectedCar.specs.fuelType }}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Seating:</span>
+          <span class="spec-value">{{ selectedCar.specs.seating }} persons</span>
+        </div>
+        <div class="spec-row price-row">
+          <span class="spec-label">Starting Price:</span>
+          <span class="spec-value">{{ selectedCar.specs.price }}</span>
+        </div>
+      </div>
+
+      <div class="no-specs-message" *ngIf="!selectedCar.specs">
+        <p>Specifications for this model are not available yet.</p>
+      </div>
+    </div>
+  </div>
+</div>

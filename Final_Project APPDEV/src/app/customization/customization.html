@@ -1,0 +1,82 @@
+<div class="customizer-container">
+    <header class="customizer-header">
+      <button (click)="goBack()" class="back-btn">← Back to Specs</button>
+      <h1>Customize Your {{ currentConfig?.maker || 'Car' }} {{ currentConfig?.model || '' }}</h1>
+      <button (click)="saveConfig()" class="save-btn" [disabled]="!currentConfig">💾 Save Configuration</button>
+    </header>
+  
+    <div class="customizer-content" *ngIf="currentConfig">
+      <!-- Preview Section -->
+      <div class="preview-section">
+        <app-car-preview [config]="currentConfig"></app-car-preview>
+      </div>
+  
+      <!-- Customization Options -->
+      <div class="options-section">
+        
+        <!-- Color Selector -->
+        <div class="option-group">
+          <h2>Exterior Color</h2>
+          <div class="color-grid">
+            <div 
+              *ngFor="let color of availableColors"
+              class="color-option"
+              [class.selected]="currentConfig.color?.name === color.name"
+              (click)="selectColor(color)">
+              <div 
+                class="color-swatch" 
+                [style.background]="color.hex">
+              </div>
+              <span>{{ color.name }}</span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Wheel Selector -->
+        <div class="option-group">
+          <h2>Wheels</h2>
+          <div class="wheels-grid">
+            <div 
+              *ngFor="let wheel of availableWheels"
+              class="wheel-option"
+              [class.selected]="currentConfig.wheels?.name === wheel.name"
+              (click)="selectWheels(wheel)">
+              <img [src]="wheel.imageUrl" [alt]="wheel.name" (error)="onWheelImageError($event)">
+              <div class="wheel-info">
+                <strong>{{ wheel.name }}</strong>
+                <span *ngIf="wheel.price > 0">+₱{{ wheel.price.toLocaleString() }}</span>
+                <span *ngIf="wheel.price === 0">Included</span>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Price Summary -->
+        <div class="price-summary">
+          <div class="price-row">
+            <span>Base Price:</span>
+            <span>₱{{ basePrice.toLocaleString() }}</span>
+          </div>
+          <div class="price-row" *ngIf="currentConfig.wheels?.price && currentConfig.wheels.price > 0">
+            <span>{{ currentConfig.wheels.name }}:</span>
+            <span>+₱{{ currentConfig.wheels.price.toLocaleString() }}</span>
+          </div>
+          <div class="price-row total">
+            <strong>Total Price:</strong>
+            <strong>₱{{ totalPrice.toLocaleString() }}</strong>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+
+    <!-- Loading/No Config State -->
+    <div *ngIf="!currentConfig" class="no-config-message">
+      <p>Loading configuration...</p>
+    </div>
+  
+    <!-- Save Confirmation -->
+    <div *ngIf="showSaveConfirmation" class="save-notification">
+      ✓ Configuration saved successfully!
+    </div>
+  </div>

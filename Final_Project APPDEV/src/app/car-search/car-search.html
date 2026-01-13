@@ -1,0 +1,28 @@
+<div class="search-box">
+  <input 
+    type="text" 
+    [(ngModel)]="searchQuery" 
+    (input)="onSearch()"
+    placeholder="Search for a car model..."
+    class="search-input"
+    autofocus
+  />
+  <button class="close-btn" (click)="toggleSearch()">✕</button>
+</div>
+
+<div class="search-results" *ngIf="searchResults.length > 0">
+  <div *ngFor="let result of searchResults" 
+       class="result-card"
+       (click)="selectCar(result)"
+       style="cursor: pointer;">
+    <img [src]="result.model.imageUrl" [alt]="result.model.Model_Name" />
+    <div class="result-info">
+      <h4>{{ result.model.Model_Name }}</h4>
+      <p>{{ result.maker }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="no-results" *ngIf="searchQuery && searchResults.length === 0">
+  <p>No models found for "{{ searchQuery }}"</p>
+</div>

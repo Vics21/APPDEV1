@@ -1,0 +1,30 @@
+<div class="preview-container">
+    <div class="image-viewer">
+      <img 
+        *ngIf="currentImageUrl"
+        [src]="currentImageUrl" 
+        [alt]="(config?.model || 'Car') + ' ' + (config?.color?.name || '')"
+        class="car-image"
+        (error)="onImageError($event)"
+      />
+      <div *ngIf="!currentImageUrl" class="no-image">
+        <p>No preview available</p>
+      </div>
+    </div>
+    
+    <div class="angle-selector">
+      <button 
+        *ngFor="let angle of angles"
+        [class.active]="currentAngle === angle"
+        (click)="changeAngle(angle)"
+        class="angle-btn">
+        {{ angle }}
+      </button>
+    </div>
+  
+    <div class="config-summary" *ngIf="config">
+      <h3>Current Configuration</h3>
+      <p><strong>Color:</strong> {{ config.color?.name || 'Not selected' }}</p>
+      <p><strong>Wheels:</strong> {{ config.wheels?.name || 'Not selected' }}</p>
+    </div>
+  </div>
